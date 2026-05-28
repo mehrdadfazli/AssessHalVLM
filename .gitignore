@@ -21,3 +21,4 @@ data/AMBER/image/
 .env
 *.key
 .DS_Store
+.idea/
