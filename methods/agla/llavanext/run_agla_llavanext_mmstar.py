@@ -18,8 +18,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--cache_dir", type=str, default="/scratch/mmarvani/.cache/huggingface")
-parser.add_argument("--input_file", type=str, default="/scratch/mmarvani/LVLM/datasets/MMStar/mmstar_inputs.jsonl")
+parser.add_argument("--cache_dir", type=str, default="/path/to/.cache/huggingface")
+parser.add_argument("--input_file", type=str, default="/path/to/LVLM/datasets/MMStar/mmstar_inputs.jsonl")
 parser.add_argument("--augmented_folder", type=str, required=True)
 parser.add_argument("--output_file", type=str, required=True)
 parser.add_argument("--alpha", type=float, default=2.0)

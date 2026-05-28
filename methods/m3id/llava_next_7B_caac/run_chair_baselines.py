@@ -19,7 +19,7 @@ parser.add_argument("--gpu_id", type=int, default=0, help="GPU ID")
 parser.add_argument("--data_path", type=str, default="../CAG/datasets/coco2014/val2014/", help="Path to COCO 2014 validation images")
 parser.add_argument("--batch_size", type=int, default=1, help="Batch size (fixed to 1)")
 parser.add_argument("--load_in_8bit", action="store_true", default=True, help="Load model in 8-bit precision")
-parser.add_argument("--cache_dir", default="/scratch/mfazli/huggingface_cache", help="Cache directory for model")
+parser.add_argument("--cache_dir", default="/path/to/huggingface_cache", help="Cache directory for model")
 parser.add_argument("--log_dir", default="./results/CHAIR_llava-next/baselines", help="Directory for logs and results")
 
 parser.add_argument("--use_VCD", action="store_true", default=False, help="Use VCD for hallucination mitigation")

@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--cache_dir", type=str, default="/scratch/mmarvani/.cache/huggingface")
+parser.add_argument("--cache_dir", type=str, default="/path/to/.cache/huggingface")
 parser.add_argument("--question_file", type=str, required=True)
 parser.add_argument("--image_folder", type=str, required=True)
 parser.add_argument("--augmented_folder", type=str, required=True)

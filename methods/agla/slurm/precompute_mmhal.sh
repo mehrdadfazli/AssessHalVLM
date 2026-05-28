@@ -6,18 +6,18 @@
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=4
 #SBATCH --time=01:00:00
-#SBATCH --output=/scratch/mmarvani/LVLM/lvlm-logs/agla_aug_mmhal_%j.out
-#SBATCH --error=/scratch/mmarvani/LVLM/lvlm-logs/agla_aug_mmhal_%j.err
+#SBATCH --output=/path/to/LVLM/lvlm-logs/agla_aug_mmhal_%j.out
+#SBATCH --error=/path/to/LVLM/lvlm-logs/agla_aug_mmhal_%j.err
 
 module load python
-source /scratch/mmarvani/LVLM/envs/agla-env/bin/activate
+source /path/to/LVLM/envs/agla-env/bin/activate
 
-export HF_HOME=/scratch/mmarvani/.cache/huggingface
-export TORCH_HOME=/scratch/mmarvani/.cache/torch
-export TMPDIR=/scratch/mmarvani/tmp
-export PYTHONPATH=/scratch/mmarvani/LVLM/AGLA:$PYTHONPATH
+export HF_HOME=/path/to/.cache/huggingface
+export TORCH_HOME=/path/to/.cache/torch
+export TMPDIR=/path/to/tmp
+export PYTHONPATH=/path/to/LVLM/AGLA:$PYTHONPATH
 
-cd /scratch/mmarvani/LVLM/AGLA/eval
+cd /path/to/LVLM/AGLA/eval
 
 python -c "
 import json, os, sys, torch
@@ -29,7 +29,7 @@ from lavis.models import load_model_and_preprocess
 from augmentation import augmentation
 
 device = 'cuda'
-output_dir = '/scratch/mmarvani/LVLM/lvlm-logs/AGLA/augmented_mmhal'
+output_dir = '/path/to/LVLM/lvlm-logs/AGLA/augmented_mmhal'
 os.makedirs(output_dir, exist_ok=True)
 
 print('Loading BLIP ITM...')
@@ -38,13 +38,13 @@ model_itm, image_processors, text_processors = load_model_and_preprocess(
 )
 loader = transforms.Compose([transforms.ToTensor()])
 
-with open('/scratch/mmarvani/LVLM/datasets/mmhal-bench/response_template.json') as f:
+with open('/path/to/LVLM/datasets/mmhal-bench/response_template.json') as f:
     data = json.load(f)
 
 print(f'Processing {len(data)} images...')
 for item in tqdm(data):
     filename = item['image_src'].split('/')[-1]
-    image_path = f'/scratch/mmarvani/LVLM/datasets/mmhal-bench/images/{filename}'
+    image_path = f'/path/to/LVLM/datasets/mmhal-bench/images/{filename}'
     output_path = f'{output_dir}/{filename}'
 
     if os.path.exists(output_path):

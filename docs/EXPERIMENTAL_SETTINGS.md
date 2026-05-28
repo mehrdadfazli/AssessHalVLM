@@ -20,12 +20,12 @@ Benchmarks: **CHAIR** (500 images, open-ended captioning), **AMBER** (generative
 ## A.2 VCD (Visual Contrastive Decoding)
 
 **Reference:** Leng et al., "Mitigating Object Hallucinations in Large Vision-Language Models through Visual Contrastive Decoding," CVPR 2024.
-**Codebase used:** CAAC repository (Mehrdad Fazli). VCD logic unchanged from original paper; only model-loading patches applied to support LLaVA-NeXT.
+**Codebase used:** the CAAC repository. VCD logic unchanged from original paper; only model-loading patches applied to support LLaVA-NeXT.
 **Scope:** LLaVA-NeXT on CHAIR and AMBER (LLaVA-1.5 and InstructBLIP VCD runs performed by collaborator via AvisC codebase).
 
 ### A.2.1 VCD Hyperparameters
 
-All values follow the original paper, Section 4.1 Implementation Details. Per Mehrdad's guidance, identical hyperparameters are used across all backbone models.
+All values follow the original paper, Section 4.1 Implementation Details. Identical hyperparameters are used across all backbone models.
 
 | Parameter | Symbol | Value | Source |
 |-----------|--------|-------|--------|
@@ -155,7 +155,7 @@ AGLA's vendored `llava/` code supports only LLaVA-1.5 (no AnyRes, no `LlavaNextF
 - Augmented images are resized to match original image dimensions before processing (required for LLaVA-NeXT's AnyRes to produce matching image token counts).
 - KV caching is used for LLaVA-NeXT (supported by `LlavaNextForConditionalGeneration`).
 
-**AGLA + InstructBLIP + MMStar:** Ran by collaborator (Mehrdad Fazli) using his HuggingFace-based InstructBLIP pipeline with left-truncated prompts. LAVIS-based InstructBLIP cannot handle MMStar's long MCQ prompts (200–300 tokens), producing empty responses regardless of AGLA. This is a LAVIS limitation, not an AGLA-specific issue.
+**AGLA + InstructBLIP + MMStar:** Run via a HuggingFace-based InstructBLIP pipeline with left-truncated prompts. LAVIS-based InstructBLIP cannot handle MMStar's long MCQ prompts (200–300 tokens), producing empty responses regardless of AGLA. This is a LAVIS limitation, not an AGLA-specific issue.
 
 ### A.4.6 Patches Applied to AGLA Repository
 
@@ -225,7 +225,7 @@ AGLA outputs require format conversion before scoring:
 - `lvlm-env`: PyTorch 2.5.1, transformers 4.47.0 (Vanilla, VCD, M3ID via CAAC; LLaVA-NeXT AGLA contrastive decoding; all scoring)
 - `agla-env`: PyTorch 2.0.1, transformers 4.34.0, salesforce-lavis 1.0.2 (AGLA augmentation and LLaVA-1.5/InstructBLIP AGLA generation)
 
-**Paths.** Model weights cached under `/scratch/mmarvani/.cache/huggingface/`. COCO val2014 images at `/scratch/mmarvani/LVLM/datasets/coco2014/val2014/` (40,504 images). AMBER images at `/scratch/mmarvani/LVLM/datasets/AMBER/image/` (1,004 images). MMHal-Bench images at `/scratch/mmarvani/LVLM/datasets/mmhal-bench/images/` (96 images). MMStar images at `/scratch/mmarvani/LVLM/datasets/MMStar/images/` (1,500 images). Pre-computed AGLA augmented images stored per-benchmark under `/scratch/mmarvani/LVLM/lvlm-logs/AGLA/augmented_{chair,amber,mmhal,mmstar}/`.
+**Paths.** Model weights cached under `/path/to/.cache/huggingface/`. COCO val2014 images at `/path/to/LVLM/datasets/coco2014/val2014/` (40,504 images). AMBER images at `/path/to/LVLM/datasets/AMBER/image/` (1,004 images). MMHal-Bench images at `/path/to/LVLM/datasets/mmhal-bench/images/` (96 images). MMStar images at `/path/to/LVLM/datasets/MMStar/images/` (1,500 images). Pre-computed AGLA augmented images stored per-benchmark under `/path/to/LVLM/lvlm-logs/AGLA/augmented_{chair,amber,mmhal,mmstar}/`.
 
 **CAAC codebase patches (for VCD/M3ID/Vanilla on LLaVA-NeXT):**
 1. `src/model_utils.py`: Added `LlavaNextForConditionalGeneration` class support and `process_inputs` function for the `llava-next` model type.

@@ -6,28 +6,28 @@
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=4
 #SBATCH --time=1-12:00:00
-#SBATCH --output=/scratch/mmarvani/LVLM/lvlm-logs/amber_llavanext_%j.out
-#SBATCH --error=/scratch/mmarvani/LVLM/lvlm-logs/amber_llavanext_%j.err
+#SBATCH --output=/path/to/LVLM/lvlm-logs/amber_llavanext_%j.out
+#SBATCH --error=/path/to/LVLM/lvlm-logs/amber_llavanext_%j.err
 
 module load python
-source /scratch/mmarvani/lvlm-env/bin/activate
+source /path/to/lvlm-env/bin/activate
 
-export HF_HOME=/scratch/mmarvani/.cache/huggingface
-export TRANSFORMERS_CACHE=/scratch/mmarvani/.cache/huggingface
-export TORCH_HOME=/scratch/mmarvani/.cache/torch
-export TMPDIR=/scratch/mmarvani/tmp
-export PYTHONPATH=/scratch/mmarvani/LVLM/CAAC:$PYTHONPATH
-export NLTK_DATA=/scratch/mmarvani/.cache/nltk_data
+export HF_HOME=/path/to/.cache/huggingface
+export TRANSFORMERS_CACHE=/path/to/.cache/huggingface
+export TORCH_HOME=/path/to/.cache/torch
+export TMPDIR=/path/to/tmp
+export PYTHONPATH=/path/to/LVLM/CAAC:$PYTHONPATH
+export NLTK_DATA=/path/to/.cache/nltk_data
 
-cd /scratch/mmarvani/LVLM/CAAC
+cd /path/to/LVLM/CAAC
 
 # ---- Vanilla ----
 echo "===== LLaVA-NeXT AMBER Vanilla ====="
 python experiments/run_amber_baselines.py \
     --model_type llava-next \
-    --cache_dir /scratch/mmarvani/.cache/huggingface \
-    --amber_path /scratch/mmarvani/LVLM/datasets/AMBER \
-    --log_dir /scratch/mmarvani/LVLM/lvlm-logs/AMBER/baselines \
+    --cache_dir /path/to/.cache/huggingface \
+    --amber_path /path/to/LVLM/datasets/AMBER \
+    --log_dir /path/to/LVLM/lvlm-logs/AMBER/baselines \
     --max_new_tokens 512 \
     --num_beams 1 \
     --load_in_8bit
@@ -37,9 +37,9 @@ echo "===== Vanilla complete ====="
 echo "===== LLaVA-NeXT AMBER VCD ====="
 python experiments/run_amber_baselines.py \
     --model_type llava-next \
-    --cache_dir /scratch/mmarvani/.cache/huggingface \
-    --amber_path /scratch/mmarvani/LVLM/datasets/AMBER \
-    --log_dir /scratch/mmarvani/LVLM/lvlm-logs/AMBER/baselines \
+    --cache_dir /path/to/.cache/huggingface \
+    --amber_path /path/to/LVLM/datasets/AMBER \
+    --log_dir /path/to/LVLM/lvlm-logs/AMBER/baselines \
     --max_new_tokens 512 \
     --num_beams 1 \
     --load_in_8bit \
@@ -50,9 +50,9 @@ echo "===== VCD complete ====="
 echo "===== LLaVA-NeXT AMBER M3ID ====="
 python experiments/run_amber_baselines.py \
     --model_type llava-next \
-    --cache_dir /scratch/mmarvani/.cache/huggingface \
-    --amber_path /scratch/mmarvani/LVLM/datasets/AMBER \
-    --log_dir /scratch/mmarvani/LVLM/lvlm-logs/AMBER/baselines \
+    --cache_dir /path/to/.cache/huggingface \
+    --amber_path /path/to/LVLM/datasets/AMBER \
+    --log_dir /path/to/LVLM/lvlm-logs/AMBER/baselines \
     --max_new_tokens 512 \
     --num_beams 1 \
     --load_in_8bit \

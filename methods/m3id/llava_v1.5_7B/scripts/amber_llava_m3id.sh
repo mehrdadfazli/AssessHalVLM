@@ -6,17 +6,17 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --time=10:00:00
 #SBATCH --job-name=amber-llava-m3id
-#SBATCH --output=/scratch/smansou3/LVLM/lvlm-logs/AMBER/llava_M3ID/slurm-%j.log
+#SBATCH --output=/path/to/LVLM/lvlm-logs/AMBER/llava_M3ID/slurm-%j.log
 
 set -euo pipefail
 
-mkdir -p /scratch/smansou3/LVLM/lvlm-logs/AMBER/llava_M3ID
+mkdir -p /path/to/LVLM/lvlm-logs/AMBER/llava_M3ID
 
-source /scratch/smansou3/avisc_env.sh
-source /scratch/smansou3/avisc-env/bin/activate
-cd /scratch/smansou3/LVLM/AvisC
+source /path/to/avisc_env.sh
+source /path/to/avisc-env/bin/activate
+cd /path/to/LVLM/AvisC
 
-LOG_PATH=/scratch/smansou3/LVLM/lvlm-logs/AMBER/llava_M3ID
+LOG_PATH=/path/to/LVLM/lvlm-logs/AMBER/llava_M3ID
 META=$LOG_PATH/job_metadata_${SLURM_JOB_ID}.txt
 SENTINEL=/tmp/.sentinel_${SLURM_JOB_ID}
 
@@ -33,8 +33,8 @@ EXPECTED_AVISC=false
     echo "method=M3ID"
     echo "benchmark=AMBER"
     echo "model_path=liuhaotian/llava-v1.5-7b"
-    echo "data_path=/scratch/smansou3/LVLM/datasets/AMBER/image"
-    echo "json_path=/scratch/smansou3/LVLM/AvisC/experiments/AMBER/data/query/query_generative.json"
+    echo "data_path=/path/to/LVLM/datasets/AMBER/image"
+    echo "json_path=/path/to/LVLM/AvisC/experiments/AMBER/data/query/query_generative.json"
     echo "log_path=$LOG_PATH"
     echo "seed=42"
     echo "max_token=512"
@@ -47,7 +47,7 @@ echo "=== nvidia-smi ==="
 nvidia-smi
 echo ""
 echo "=== /home PRE ==="
-du -sh /home/smansou3/.cache/ /home/smansou3/.cache/huggingface/ /home/smansou3/.cache/torch/ 2>/dev/null || true
+du -sh /home/user/.cache/ /home/user/.cache/huggingface/ /home/user/.cache/torch/ 2>/dev/null || true
 echo ""
 echo "=== HF_HOME=$HF_HOME ==="
 echo "=== job starting at $(date) ==="
@@ -55,8 +55,8 @@ echo "=== job starting at $(date) ==="
 echo "=== exact python invocation ==="
 echo "python experiments/cd_scripts/amber_eval_llava.py \\
     --model-path liuhaotian/llava-v1.5-7b \\
-    --data_path /scratch/smansou3/LVLM/datasets/AMBER/image \\
-    --json_path /scratch/smansou3/LVLM/AvisC/experiments/AMBER/data/query/query_generative.json \\
+    --data_path /path/to/LVLM/datasets/AMBER/image \\
+    --json_path /path/to/LVLM/AvisC/experiments/AMBER/data/query/query_generative.json \\
     --log_path $LOG_PATH \\
     --seed 42 \\
     --max_token 512 \\
@@ -71,8 +71,8 @@ touch "$SENTINEL"
 EXIT_CODE=0
 python experiments/cd_scripts/amber_eval_llava.py \
     --model-path liuhaotian/llava-v1.5-7b \
-    --data_path /scratch/smansou3/LVLM/datasets/AMBER/image \
-    --json_path /scratch/smansou3/LVLM/AvisC/experiments/AMBER/data/query/query_generative.json \
+    --data_path /path/to/LVLM/datasets/AMBER/image \
+    --json_path /path/to/LVLM/AvisC/experiments/AMBER/data/query/query_generative.json \
     --log_path "$LOG_PATH" \
     --seed 42 \
     --max_token 512 \
@@ -82,10 +82,10 @@ python experiments/cd_scripts/amber_eval_llava.py \
 echo "=== job done at $(date), python exit=$EXIT_CODE ==="
 echo ""
 echo "=== /home POST ==="
-du -sh /home/smansou3/.cache/ /home/smansou3/.cache/huggingface/ /home/smansou3/.cache/torch/ 2>/dev/null || true
+du -sh /home/user/.cache/ /home/user/.cache/huggingface/ /home/user/.cache/torch/ 2>/dev/null || true
 echo ""
 echo "=== /scratch caches POST ==="
-du -sh /scratch/smansou3/.cache/huggingface/ /scratch/smansou3/.cache/torch/ 2>/dev/null
+du -sh /path/to/.cache/huggingface/ /path/to/.cache/torch/ 2>/dev/null
 echo ""
 
 # Flag verification: parse the command_line_args.json that THIS run wrote.

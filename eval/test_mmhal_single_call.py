@@ -80,7 +80,7 @@ To evaluate the LMM responses, first, begin your evaluation by providing a short
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--api-key", type=str, required=True, help="OpenRouter API key")
-    parser.add_argument("--response-file", type=str, default="/scratch/mmarvani/LVLM/lvlm-logs/MMHal/llava-next_vanilla.json")
+    parser.add_argument("--response-file", type=str, default="/path/to/LVLM/lvlm-logs/MMHal/llava-next_vanilla.json")
     args = parser.parse_args()
 
     # Load first question only

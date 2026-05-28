@@ -28,7 +28,7 @@ from PIL import Image
 import math
 
 # Removed: from amber_loader import AMBERDataSet
-# (Bypassed per Mehrdad's guidance — AMBERDataSet defaults silently load 0 items
+# (Bypassed per project guidance — AMBERDataSet defaults silently load 0 items
 #  when passed query_generative.json. Use direct json.load instead, see below.)
 from lavis.models import load_model_and_preprocess
 # import kornia
@@ -150,10 +150,10 @@ def main():
     
     
     # ==============================================================
-    # PATCHED 2026-05-05 (per Mehrdad's guidance, Option 2 path):
+    # PATCHED 2026-05-05 (per project guidance, Option 2 path):
     #   bypass AMBERDataSet entirely. Its defaults (num_gen=0,
     #   num_dis=5000) silently load 0 items when given
-    #   query_generative.json. Use Mohit's run_amber_baselines.py
+    #   query_generative.json. Use run_amber_baselines.py
     #   pattern: direct json.load + per-item loop with resume.
     # ==============================================================
     with open(args.json_path, 'r', encoding='utf-8') as f:

@@ -4,7 +4,7 @@ AGLA Integration Guide
 Drop-in AGLA contrastive decoding for InstructBLIP on MMStar.
 
 Prerequisites:
-- Pre-computed augmented images at: /scratch/mfazli/augmented_mmstar/{index}.png
+- Pre-computed augmented images at: /path/to/augmented_mmstar/{index}.png
 - Filenames match MMStar image indices (0.png, 1.png, ..., 1499.png)
 - 788 properly augmented, 712 fallback originals (tensor size mismatch on unusual aspect ratios)
 
@@ -112,7 +112,7 @@ def generate_with_agla(model, processor, raw_image, augmented_image, prompt,
 """
 import json, os
 
-AUG_DIR = "/scratch/mfazli/augmented_mmstar"
+AUG_DIR = "/path/to/augmented_mmstar"
 
 for item in mmstar_data:
     img_path = item["img_path"]

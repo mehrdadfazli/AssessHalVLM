@@ -6,18 +6,18 @@
 #SBATCH --mem=48G
 #SBATCH --cpus-per-task=4
 #SBATCH --time=01:00:00
-#SBATCH --output=/scratch/mmarvani/LVLM/lvlm-logs/iblip_trunc_test_%j.out
-#SBATCH --error=/scratch/mmarvani/LVLM/lvlm-logs/iblip_trunc_test_%j.err
+#SBATCH --output=/path/to/LVLM/lvlm-logs/iblip_trunc_test_%j.out
+#SBATCH --error=/path/to/LVLM/lvlm-logs/iblip_trunc_test_%j.err
 
 module load python
-source /scratch/mmarvani/LVLM/envs/agla-env/bin/activate
+source /path/to/LVLM/envs/agla-env/bin/activate
 
-export HF_HOME=/scratch/mmarvani/.cache/huggingface
-export TORCH_HOME=/scratch/mmarvani/.cache/torch
-export TMPDIR=/scratch/mmarvani/tmp
-export PYTHONPATH=/scratch/mmarvani/LVLM/AGLA:$PYTHONPATH
+export HF_HOME=/path/to/.cache/huggingface
+export TORCH_HOME=/path/to/.cache/torch
+export TMPDIR=/path/to/tmp
+export PYTHONPATH=/path/to/LVLM/AGLA:$PYTHONPATH
 
-cd /scratch/mmarvani/LVLM/AGLA/eval
+cd /path/to/LVLM/AGLA/eval
 
 python -c "
 import json, os, sys, torch
@@ -38,10 +38,10 @@ model_itm, image_processors, text_processors = load_model_and_preprocess(
     'blip_image_text_matching', 'large', device=device, is_eval=True
 )
 
-with open('/scratch/mmarvani/LVLM/datasets/MMStar/mmstar_inputs.jsonl') as f:
+with open('/path/to/LVLM/datasets/MMStar/mmstar_inputs.jsonl') as f:
     data = [json.loads(l) for l in f][:50]
 
-aug_dir = '/scratch/mmarvani/LVLM/lvlm-logs/AGLA/augmented_mmstar'
+aug_dir = '/path/to/LVLM/lvlm-logs/AGLA/augmented_mmstar'
 
 def truncate_prompt(prompt, max_tokens=100):
     \"\"\"Keep only the last ~max_tokens tokens worth of text.\"\"\"

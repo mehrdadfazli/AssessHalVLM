@@ -3,8 +3,8 @@ MMHal-Bench evaluation for LLaVA-NeXT (LlavaNextForConditionalGeneration).
 Uses CAAC's hand-rolled VCD/M3ID loops from sampling_utils.py (Option B).
 
 Notable decisions:
-- 8-bit quant hardcoded (Mohit-parity; CAAC's store_true+default=True is a bug, but his runs all use 8-bit)
-- M3ID lamda=0.2, beta=0.1 (Mohit-parity per CAAC run_chair_baselines.py:31)
+- 8-bit quant hardcoded (parity; CAAC's store_true+default=True is a bug, but all reference runs use 8-bit)
+- M3ID lamda=0.2, beta=0.1 (parity per CAAC run_chair_baselines.py:31)
 - 'lamda' (sic) is the kwarg name in sampling_utils.py — typo preserved
 - inputs from LlavaNextProcessor flow directly into sampling_utils functions
 - Output schema {**item, "model_answer": text} matches MMHal-Bench's expected field name
@@ -61,9 +61,9 @@ def parse_args():
 
     # Standard (mirror mmstar_eval_llava_next.py)
     parser.add_argument("--model-path", type=str, default="llava-hf/llava-v1.6-vicuna-7b-hf")
-    parser.add_argument("--jsonl_path", type=str, default="/scratch/smansou3/LVLM/datasets/MMHal-Bench/mmhal_inputs.jsonl")
-    parser.add_argument("--data_path", type=str, default="/scratch/smansou3/LVLM/datasets/MMHal-Bench/images")
-    parser.add_argument("--log_path", type=str, default="/scratch/smansou3/LVLM/lvlm-logs/MMHal-Bench/llava_next")
+    parser.add_argument("--jsonl_path", type=str, default="/path/to/LVLM/datasets/MMHal-Bench/mmhal_inputs.jsonl")
+    parser.add_argument("--data_path", type=str, default="/path/to/LVLM/datasets/MMHal-Bench/images")
+    parser.add_argument("--log_path", type=str, default="/path/to/LVLM/lvlm-logs/MMHal-Bench/llava_next")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--max_token", type=int, default=512)
     parser.add_argument("--gpu-id", type=int, default=0)

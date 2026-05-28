@@ -23,15 +23,15 @@ We evaluate whether hallucination-mitigation methods genuinely improve vision-la
 
 ### Methods
 
-| Method | Family | Directory | Author |
-|--------|--------|-----------|--------|
-| Vanilla | baseline | `methods/vanilla/` | Mohit |
-| VCD | contrastive decoding | `methods/vcd/` | Sina, Mohit |
-| M3ID | contrastive decoding | `methods/m3id/` | Sina, Mohit |
-| AGLA | attention / augmentation | `methods/agla/` | Mohit |
-| CAAC | attention calibration | `methods/caac/` | Mehrdad |
-| CEI | representation enhancement | `methods/cei/` | Mehrdad |
-| AFTER | representation enhancement | `methods/after/` | Mehrdad |
+| Method | Family | Directory |
+|--------|--------|-----------|
+| Vanilla | baseline | `methods/vanilla/` |
+| VCD | contrastive decoding | `methods/vcd/` |
+| M3ID | contrastive decoding | `methods/m3id/` |
+| AGLA | attention / augmentation | `methods/agla/` |
+| CAAC | attention calibration | `methods/caac/` | 
+| CEI | representation enhancement | `methods/cei/` | 
+| AFTER | representation enhancement | `methods/after/` |
 
 ### Benchmarks
 
@@ -67,12 +67,12 @@ AssessHalVLM/
 │   └── amber_generative.jsonl   # AMBER generative split (1,004 items)
 └── methods/
     ├── vanilla/                 # CAAC-harness baselines (all 3 models, all 4 benchmarks)
-    ├── vcd/                     # Sina (LLaVA-1.5, InstructBLIP) + LLaVA-NeXT CAAC harness
-    ├── m3id/                    # Sina (LLaVA-1.5, InstructBLIP) + LLaVA-NeXT CAAC harness
+    ├── vcd/                     # LLaVA-1.5, InstructBLIP (AvisC) + LLaVA-NeXT CAAC harness
+    ├── m3id/                    # LLaVA-1.5, InstructBLIP (AvisC) + LLaVA-NeXT CAAC harness
     ├── agla/                    # full AGLA pipeline + LLaVA-NeXT split approach
-    ├── caac/                    # Mehrdad — config-driven
-    ├── cei/                     # Mehrdad — config-driven
-    └── after/                   # Mehrdad — activation editing
+    ├── caac/                    # config-driven
+    ├── cei/                     # config-driven
+    └── after/                   # activation editing
 ```
 
 Each method directory is **self-contained** and bundles its own copy of the relevant eval scripts, because methods run in **different conda environments** (see `docs/ENVIRONMENTS.md`). The top-level `eval/` holds the canonical scoring scripts referenced in `docs/REPRODUCTION.md`.
@@ -145,7 +145,7 @@ MMHal-Bench is the only benchmark requiring a paid API (GPT-4o judge via OpenRou
 
 - **AGLA vendored dependencies.** The AGLA method wraps the official AGLA repo (https://github.com/Lackel/AGLA), which bundles its own `llava/` and `lavis/`. We ship our patches (`methods/agla/lavis_patches/`) and run scripts, not the full vendored tree — clone the AGLA repo and apply the patches per `methods/agla/README.md`.
 - **AGLA + InstructBLIP + MMStar.** LAVIS-based InstructBLIP returns empty responses on MMStar's long MCQ prompts (200–300 tokens). This is a LAVIS limitation, not method-specific (vanilla through LAVIS fails identically). Our reported number uses a HuggingFace InstructBLIP pipeline with left-truncated prompts.
-- **VCD/M3ID on LLaVA-NeXT.** CHAIR and AMBER for LLaVA-NeXT were run through the CAAC baselines harness (`methods/vcd/llava_next_7B_caac/`, `methods/m3id/llava_next_7B_caac/`), not Sina's AvisC-based scripts (which cover LLaVA-1.5 and InstructBLIP).
+- **VCD/M3ID on LLaVA-NeXT.** CHAIR and AMBER for LLaVA-NeXT were run through the CAAC baselines harness (`methods/vcd/llava_next_7B_caac/`, `methods/m3id/llava_next_7B_caac/`), not the AvisC-based scripts (which cover LLaVA-1.5 and InstructBLIP).
 
 ---
 

@@ -106,7 +106,7 @@ python eval/mmstar_eval.py --cap_file outputs/<MODEL>_mmstar_vanilla.jsonl --sco
 
 ## VCD / M3ID
 
-**LLaVA-1.5 and InstructBLIP** (env per `methods/vcd/README.md`, Sina's AvisC scripts):
+**LLaVA-1.5 and InstructBLIP** (env per `methods/vcd/README.md`):
 ```bash
 # example: VCD on LLaVA-1.5, CHAIR
 bash methods/vcd/llava_v1.5_7B/scripts/chair_llava_vcd.sh
@@ -122,7 +122,7 @@ python methods/vcd/llava_next_7B_caac/run_chair_baselines.py \
   --output_file outputs/llava-next_chair_vcd.jsonl --load_in_8bit
 # (method m3id for M3ID; run_amber_baselines.py for AMBER)
 ```
-LLaVA-NeXT MMStar + MMHal for VCD/M3ID use Sina's hand-rolled token loops in `methods/vcd/llava_next_7B/sampling_utils.py`.
+LLaVA-NeXT MMStar + MMHal for VCD/M3ID use hand-rolled token loops in `methods/vcd/llava_next_7B/sampling_utils.py`.
 
 ---
 

@@ -6,17 +6,17 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --time=02:30:00
 #SBATCH --job-name=chair-llava-m3id
-#SBATCH --output=/scratch/smansou3/LVLM/lvlm-logs/CHAIR/llava_M3ID/slurm-%j.log
+#SBATCH --output=/path/to/LVLM/lvlm-logs/CHAIR/llava_M3ID/slurm-%j.log
 
 set -euo pipefail
 
-mkdir -p /scratch/smansou3/LVLM/lvlm-logs/CHAIR/llava_M3ID
+mkdir -p /path/to/LVLM/lvlm-logs/CHAIR/llava_M3ID
 
-source /scratch/smansou3/avisc_env.sh
-source /scratch/smansou3/avisc-env/bin/activate
-cd /scratch/smansou3/LVLM/AvisC
+source /path/to/avisc_env.sh
+source /path/to/avisc-env/bin/activate
+cd /path/to/LVLM/AvisC
 
-LOGDIR=/scratch/smansou3/LVLM/lvlm-logs/CHAIR/llava_M3ID
+LOGDIR=/path/to/LVLM/lvlm-logs/CHAIR/llava_M3ID
 META=$LOGDIR/job_metadata_${SLURM_JOB_ID}.txt
 
 {
@@ -28,7 +28,7 @@ META=$LOGDIR/job_metadata_${SLURM_JOB_ID}.txt
     echo "method=M3ID"
     echo "benchmark=CHAIR"
     echo "model_path=liuhaotian/llava-v1.5-7b"
-    echo "data_path=/scratch/smansou3/LVLM/datasets/coco2014/val2014"
+    echo "data_path=/path/to/LVLM/datasets/coco2014/val2014"
     echo "log_dir=$LOGDIR"
     echo "num_images=500"
     echo "seed=42"
@@ -43,7 +43,7 @@ echo "=== nvidia-smi ==="
 nvidia-smi
 echo ""
 echo "=== /home PRE ==="
-du -sh /home/smansou3/.cache/ /home/smansou3/.cache/huggingface/ /home/smansou3/.cache/torch/ 2>/dev/null || true
+du -sh /home/user/.cache/ /home/user/.cache/huggingface/ /home/user/.cache/torch/ 2>/dev/null || true
 echo ""
 echo "=== HF_HOME=$HF_HOME ==="
 echo "=== job starting at $(date) ==="
@@ -51,7 +51,7 @@ echo "=== job starting at $(date) ==="
 EXIT_CODE=0
 python experiments/cd_scripts/chair_eval_llava.py \
     --model-path liuhaotian/llava-v1.5-7b \
-    --data_path /scratch/smansou3/LVLM/datasets/coco2014/val2014 \
+    --data_path /path/to/LVLM/datasets/coco2014/val2014 \
     --opera_results "" \
     --log_dir "$LOGDIR" \
     --num_images 500 \
@@ -64,10 +64,10 @@ python experiments/cd_scripts/chair_eval_llava.py \
 echo "=== job done at $(date), python exit=$EXIT_CODE ==="
 echo ""
 echo "=== /home POST ==="
-du -sh /home/smansou3/.cache/ /home/smansou3/.cache/huggingface/ /home/smansou3/.cache/torch/ 2>/dev/null || true
+du -sh /home/user/.cache/ /home/user/.cache/huggingface/ /home/user/.cache/torch/ 2>/dev/null || true
 echo ""
 echo "=== /scratch caches POST ==="
-du -sh /scratch/smansou3/.cache/huggingface/ /scratch/smansou3/.cache/torch/ 2>/dev/null
+du -sh /path/to/.cache/huggingface/ /path/to/.cache/torch/ 2>/dev/null
 echo ""
 
 JSONL=$(find "$LOGDIR" -name "*_results.jsonl" -type f -printf '%T@ %p\n' 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)

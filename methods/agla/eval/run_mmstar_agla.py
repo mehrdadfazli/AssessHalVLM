@@ -157,7 +157,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_type", type=str, choices=["llava", "instructblip"], required=True)
     parser.add_argument("--model-path", type=str, default="liuhaotian/llava-v1.5-7b")
-    parser.add_argument("--input_file", type=str, default="/scratch/mmarvani/LVLM/datasets/MMStar/mmstar_inputs.jsonl")
+    parser.add_argument("--input_file", type=str, default="/path/to/LVLM/datasets/MMStar/mmstar_inputs.jsonl")
     parser.add_argument("--augmented_folder", type=str, required=True)
     parser.add_argument("--output_file", type=str, required=True)
     parser.add_argument("--conv-mode", type=str, default="llava_v1")

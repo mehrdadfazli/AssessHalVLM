@@ -38,7 +38,7 @@ pip install -r methods/agla/requirements.txt
 
 Then clone the official AGLA repo and apply our patches — see `methods/agla/README.md`.
 
-## 3. `caac` / `cei` — Mehrdad's calibration/injection methods
+## 3. `caac` / `cei` — calibration / injection methods
 
 ```bash
 conda create -n caac python=3.10 -y
@@ -47,7 +47,7 @@ pip install -r methods/caac/requirements.txt   # same reqs work for cei
 # transformers >=4.46,<4.50
 ```
 
-## 4. `after` — Mehrdad's activation editing
+## 4. `after` — activation editing
 
 ```bash
 conda create -n after python=3.10 -y
@@ -72,4 +72,4 @@ pip install -r methods/after/requirements.txt
 | `cei` | CEI | all 3 | all 4 |
 | `after` | AFTER | all 3 | all 4 |
 
-VCD/M3ID on LLaVA-1.5 and InstructBLIP use Sina's AvisC-based scripts (`methods/vcd/llava_v1.5_7B/`, `methods/vcd/instructblip_7B/`), which carry their own environment notes in `methods/vcd/README.md`.
+VCD/M3ID on LLaVA-1.5 and InstructBLIP use the AvisC-based scripts (`methods/vcd/llava_v1.5_7B/`, `methods/vcd/instructblip_7B/`), which carry their own environment notes in `methods/vcd/README.md`.

@@ -64,9 +64,9 @@ def parse_args():
     parser.add_argument("--top_p", type=float, default=1.0)
     parser.add_argument("--top_k", type=int, default=None)
 
-    parser.add_argument("--jsonl_path", type=str, default="/scratch/smansou3/LVLM/datasets/MMHal-Bench/mmhal_inputs.jsonl")
-    parser.add_argument("--data_path", type=str, default="/scratch/smansou3/LVLM/datasets/MMHal-Bench/images")
-    parser.add_argument("--log_path", type=str, default="/scratch/smansou3/LVLM/lvlm-logs/MMHal-Bench/instructblip")
+    parser.add_argument("--jsonl_path", type=str, default="/path/to/LVLM/datasets/MMHal-Bench/mmhal_inputs.jsonl")
+    parser.add_argument("--data_path", type=str, default="/path/to/LVLM/datasets/MMHal-Bench/images")
+    parser.add_argument("--log_path", type=str, default="/path/to/LVLM/lvlm-logs/MMHal-Bench/instructblip")
 
     parser.add_argument("--noise_step", type=int, default=500)
     parser.add_argument("--use_cd", type=str2bool, default=False)

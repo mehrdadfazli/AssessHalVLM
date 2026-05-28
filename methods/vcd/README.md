@@ -1,4 +1,4 @@
-# VCD — Visual Contrastive Decoding (Sina's implementation)
+# VCD — Visual Contrastive Decoding
 
 Inference code for **VCD** (Leng et al., CVPR 2024) applied to three 7B LVLMs, for the paper *"Hallucination Mitigation or Conservative Decoding?"*. Training-free, inference-time only.
 
@@ -44,7 +44,7 @@ sina_VCD/
 |---|:---:|:---:|:---:|:---:|
 | LLaVA-1.5 7B | ✅ | ✅ | ✅ | ✅ |
 | InstructBLIP 7B | ✅ | ✅ | ✅ | ✅ |
-| LLaVA-NeXT 7B | — (Mohit's CAAC run) | — (Mohit's CAAC run) | ✅ | ✅ |
+| LLaVA-NeXT 7B | — (CAAC harness run) | — (CAAC harness run) | ✅ | ✅ |
 
 **10 VCD cells** in this package. LLaVA-NeXT × CHAIR/AMBER were run by a teammate (CAAC harness) and are not included here.
 

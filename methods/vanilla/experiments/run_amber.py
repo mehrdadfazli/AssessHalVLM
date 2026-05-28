@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser(description="Run AMBER benchmark with hallucina
 parser.add_argument("--model_type", default="instructblip", choices=["instructblip", "llava"], help="Model type")
 parser.add_argument("--load_in_8bit", action="store_true", default=True, help="Load model in 8-bit precision")
 parser.add_argument("--cache_dir", default="/path/to/model_checkpoints", help="Cache directory for model")
-parser.add_argument("--amber_path", default="/projects/zzhu20/Mehrdad/AMBER", help="Path to AMBER dataset")
+parser.add_argument("--amber_path", default="/path/to/AMBER", help="Path to AMBER dataset")
 parser.add_argument("--log_dir", default="../results/AMBER", help="Directory for logs and results")
 parser.add_argument("--use_CAAC", action="store_true", default=True, help="Use CAAC for hallucination mitigation")
 
