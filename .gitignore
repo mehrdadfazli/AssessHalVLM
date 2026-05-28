@@ -20,3 +20,4 @@ data/AMBER/image/
 # Env
 .env
 *.key
+.DS_Store
