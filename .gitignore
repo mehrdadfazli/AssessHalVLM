@@ -1,0 +1,22 @@
+# Outputs and caches
+outputs/
+results/
+*.log
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Model / data caches
+cache/
+*.pth
+features/
+probes/
+
+# Large data (download via prepare scripts)
+data/MMStar/images/
+data/coco2014/
+data/AMBER/image/
+
+# Env
+.env
+*.key
