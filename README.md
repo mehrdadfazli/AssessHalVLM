@@ -152,7 +152,3 @@ MMHal-Bench is the only benchmark requiring a paid API (GPT-4o judge via OpenRou
 ## Citation
 
 If you use this code, please cite our paper (details to be added) and the original method papers: VCD (Leng et al., 2024), M3ID (Favero et al., 2024), AGLA (An et al., 2025), CAAC, CEI, and AFTER.
-
-## Contributors
-
-Mehrdad Fazli, Sina Mansouri, Mohit Marvania — under the supervision of Dr. Ziwei Zhu (George Mason University).
